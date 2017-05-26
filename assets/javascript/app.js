@@ -2,6 +2,8 @@
 var anotherTrain = 0;
 var hoursWaiting;
 
+$("#edit-train-panel").hide();
+
 // Initialize Firebase
 var config = {
      apiKey: "AIzaSyCNYgtHwHFhn_OTGyIHRE5vtUbxY_f3JW4",
@@ -70,48 +72,65 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
      var currentMinute = moment().get('minute');
 
      var currentHour = moment(currentTime, "HH:mm").hour();
-     if (currentHour > 12) {
+     
 
-     }
-     // console.log("current hour   " + currentHour);
 
      var diffTime = moment().diff(moment(trainFirstArrivalAdjusted), "minutes");
-     // console.log("difffff   " + diffTime);
-
-
-     var timeDifference = diffTime % trainFrequency;
-
-
-     var minutesTillArrival = trainFrequency - timeDifference;
 
 
 
+     var timeDifference = diffTime % trainFrequency; // minutes from last arrival
+
+
+     var minutesTillArrival = trainFrequency - timeDifference; // minutes from last arrival 
+
+
+     // checking to see if minutes to next arrival is greater than 60 \\
      if (currentHour - hourOfFirstArrival < 0) {
-          if (currentHour > 11) {
-               var a1 = hourOfFirstArrival - currentHour;
-               minutesTillArrival = minutesTillArrival + (a1 * 60);
-               var nextTrain = moment().add(minutesTillArrival, "minutes");
-               var arrivaltime = moment(nextTrain).format("hh:mm a");
-          } else {
-               var a1 = hourOfFirstArrival - currentHour;
-               minutesTillArrival = minutesTillArrival + (a1 * 60);
-               var nextTrain = moment().add(minutesTillArrival, "minutes");
-               var arrivaltime = moment(nextTrain).format("hh:mm a");
-
-          }
+          // for every additional hour over the first sixty minutes, 
+          // store that value in variable a1 \\
+          var a1 = hourOfFirstArrival - currentHour;
+          // converting hours to minutes \\
+          minutesTillArrival = minutesTillArrival + (a1 * 60);
+          // add extra time (in minutes) to current time (moment.js) to obtain value of next arrival\
+          var nextTrain = moment().add(minutesTillArrival, "minutes");
+          // formatting time to 12 hour standard \\
+          var arrivaltime = moment(nextTrain).format("hh:mm a");
 
      } else {
-          if (currentHour < 12) {
 
-               var nextTrain = moment().add(minutesTillArrival, "minutes");
-               var arrivaltime = moment(nextTrain).format("hh:mm a");
-
-          } else {
-               var nextTrain = moment().add(minutesTillArrival, "minutes");
-               var arrivaltime = moment(nextTrain).format("hh:mm A");
-          }
-
+          var nextTrain = moment().add(minutesTillArrival, "minutes");
+          var arrivaltime = moment(nextTrain).format("hh:mm a");
      }
-     $("#train-data-table > tbody").prepend("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
-          trainFrequency + "</td><td>" + arrivaltime + "</td><td>" + minutesTillArrival + "</td></tr>");
+
+     // displaying up-to-date (upon-click  or refresh) data to html, reflective of firebase.database \\
+     $("#train-data-table > tbody").prepend("<tr class='data-well'><td id='name-well'>" + trainName + "</td><td id='destination-well'>" + trainDestination + "</td><td id='frequency-well'>" +
+          trainFrequency + "</td><td id='arrival-well'>" + arrivaltime + "</td><td id='minutes-till-well'>" + minutesTillArrival + "</td></tr>");
+}); // closing addTrain on-click function \\
+
+
+// When edit data button is clicked \\
+$("#update-data-show-panel-btn").on("click", function(){
+  event.preventDefault();
+
+  // Display edit data panel \\
+  $("#edit-train-panel").slideDown("fast");
+
+  $(".data-well").on("click", function(){
+
+
+      console.log(this.innerText);
+
+    // var arrivalEdit =children.innerText").text();
+    // var destinationEdit = $("#destination-well").text();
+    // var frequencyEdit = $("#frequency-well").text();
+  
+    // console.log("frequencyEdit:  " + frequencyEdit);
+    // console.log("nameEdit   " + nameEdit);
+    // console.log("destinationEdit   " + destinationEdit);
+    // console.log("arrivalEdit   " + arrivalEdit); 
+
+     
+  })
+
 });
