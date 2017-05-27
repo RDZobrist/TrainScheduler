@@ -2,7 +2,7 @@
 var anotherTrain = 0;
 var hoursWaiting;
 
-$("#edit-train-panel").hide();
+$("#edit-train-panel, #update-data-show-panel-btn").hide();
 
 // Initialize Firebase
 var config = {
@@ -110,16 +110,18 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
 
 // When edit data button is clicked \\
-$("#update-data-show-panel-btn").on("click", function(){
-  event.preventDefault();
+// $("#update-data-show-panel-btn").on("click", function(){
+//   event.preventDefault();
 
-  // Display edit data panel \\
-  $("#edit-train-panel").slideDown("fast");
+//   // Display edit data panel \\
+//   $("#edit-train-panel").slideDown("fast");
 
-  $(".data-well").on("click", function(){
+//   $(".data-well").on("click", function(){
 
-
-      console.log(this.innerText);
+// if(this.indexOf(innerText) == "  "){
+//   var a = this.indexOf(innerText)
+// }
+//       console.log(this.innerText);
 
     // var arrivalEdit =children.innerText").text();
     // var destinationEdit = $("#destination-well").text();
@@ -131,6 +133,3 @@ $("#update-data-show-panel-btn").on("click", function(){
     // console.log("arrivalEdit   " + arrivalEdit); 
 
      
-  })
-
-});
