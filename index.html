@@ -2,119 +2,121 @@
 <html>
 
 <head>
-     <!--reset css cdn -->
-     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-     <!-- bootstrap theme courtesy of bootswatch.com -->
-     <link rel="stylesheet" type="text/css" href="assets/css/bsTheme.css">
-     <!-- external css stylesheet -->
-     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-     <!--jquery cdn -->
-     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-     <!-- moment.js cdn -->
-     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-     <!-- Firebase Reference -->
-     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-     <title>The Chimerical Express</title>
+    <!--reset css cdn -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- bootstrap theme courtesy of bootswatch.com -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bsTheme.css">
+    <!-- external css stylesheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- moment.js cdn -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <title>The Chimerical Express</title>
 </head>
 
 <body>
-     <!-- Employee Tracker -->
-     <div class="container">
-          <!-- Jumbotron -->
-          <div class="jumbotron" style="background-color: navy; color: white">
-               <h1 class="text-center">The Chimerical Express</h1>
-               <h5 class="text-center text-muted">Where you can schedule, maintain, and keep a constant eye on the train of your dreams</h5>
-          </div>
-          <div class="row">
-               <div class="col-lg-12">
+    <div class="container-fluid">
+        <!-- Jumbotron -->
+        <div class="jumbotron" style="background-color: navy; color: white">
+            <h1 class="text-center">The Chimerical Express</h1>
+            <h4 class="text-center">Where you can schedule, maintain, and keep a constant eye on the train of your dreams</h4>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
                     <!-- Current Employees-->
                     <div class="panel panel-primary">
-                         <div class="panel-heading">
-                              <h3 class="panel-title"><strong>Current Fleet Schedule</strong></h3>
-                         </div>
-                         <div class="panel-body">
-                              <table class="table table-hover" id='train-data-table'>
-                                   <thead>
-                                        <tr>
-                                             <th id="column-header"><strong>Train Name</strong></th>
-                                             <th id="column-header"><strong>Destination</strong></th>
-                                             <th id="column-header"><strong>Frequency of Arrival (minutes)</strong></th>
-                                             <th id="column-header"><strong>Next Arrival</strong></th>
-                                             <th id="column-header"><strong>Minutes Until Arrival</strong></th>
-                                        </tr>
-                                   </thead>
-                                   <tbody>
-                                   </tbody>
-                              </table>
-                         </div>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Current Fleet Schedule</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover" id='train-data-table'>
+                                <thead>
+                                    <tr>
+                                        <th id="column-header"><strong>Train Name</strong></th>
+                                        <th id="column-header"><strong>Destination</strong></th>
+                                        <th id="column-header"><strong>Frequency of Arrival (minutes)</strong></th>
+                                        <th id="column-header"><strong>Next Arrival</strong></th>
+                                        <th id="column-header"><strong>Minutes Until Arrival</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- Add a train  -->
                     <div class="panel panel-primary">
-                         <div class="panel-heading">
-                              <h3 class="panel-title"><strong>Add a Train</strong></h3>
-                         </div>
-                         <div class="panel-body">
-                              <!-- form to submit data -->
-                              <form>
-                                   <div class="form-group">
-                                        <label for="employee-name-input">Train Name</label>
-                                        <input class="form-control" id="train-name-input" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="role-input">Destination</label>
-                                        <input class="form-control" id="destination-input" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="start-input">First Arrival of the Day (HH:MM - ex: 21:20)</label>
-                                        <input class="form-control" id="first-train-input" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="rate-input">Frequency (minutes)</label>
-                                        <input class="form-control" id="frequency-input" type="text">
-                                   </div>
-                                   <div class="col-md-6">
-                                        <button class="btn btn-primary" id="add-train-btn" type="submit">Add Train</button>
-                                   </div>
-                                   <div class="col-md-6">
-                                        <button class="btn btn-primary pull-right" id="update-data-show-panel-btn" type="submit">Edit Data</button>
-                                   </div>
-                              </form>
-                         </div>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Add a Train</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- form to submit data -->
+                            <form>
+                                <div class="form-group">
+                                    <label for="train-name-input">Train Name</label>
+                                    <input class="form-control" id="train-name-input" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="role-input">Destination</label>
+                                    <input class="form-control" id="destination-input" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="start-input">First Arrival of the Day (HH:MM - ex: 21:20)</label>
+                                    <input class="form-control" id="first-train-input" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rate-input">Frequency (minutes)</label>
+                                    <input class="form-control" id="frequency-input" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary" id="add-train-btn" type="submit">Add Train</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary pull-right" id="update-data-show-panel-btn" type="submit">Edit Data</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <!-- Edit train data  -->
-                    <div class="panel panel-primary" id="edit-train-panel">
-                         <div class="panel-heading">
-                              <h3 class="panel-title"><strong>Edit Train Data</strong></h3>
-                              <h6>Click on the data entry you wish to edit from the panel above</h6>
-                         </div>
-                         <div class="panel-body">
-                              <!-- form to submit updated data -->
-                              <form>
-                                   <div class="form-group">
-                                        <label for="train-name-input">Train Name</label>
-                                        <input class="form-control" id="train-name-input-edit" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="destination-input">Destination</label>
-                                        <input class="form-control" id="destination-input-edit" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="start-input">First Arrival of the Day (HH:MM - ex: 21:20)</label>
-                                        <input class="form-control" id="first-train-input-edit" type="text">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="frequency-input">Frequency (minutes)</label>
-                                        <input class="form-control" id="frequency-input-edit" type="text">
-                                   </div>
-                                   <button class="btn btn-primary" id="update-data-btn" type="submit">Update Data</button>
-                              </form>
-                         </div>
+                </div>
+                <!-- Edit train data  -->
+                <div class="panel panel-primary" id="edit-train-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Edit Train Data</strong></h3>
+                        <h6>Click on the data entry you wish to edit from the panel above</h6>
                     </div>
-               </div>
-          </div>
-     </div>
-     <!-- JavaScript -->
-     <script src="assets/javascript/app.js"></script>
+                    <div class="panel-body">
+                        <!-- form to submit updated data -->
+                        <form>
+                            <div class="form-group">
+                                <label for="train-name-input">Train Name</label>
+                                <input class="form-control" id="train-name-input-edit" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="destination-input">Destination</label>
+                                <input class="form-control" id="destination-input-edit" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="start-input">First Arrival of the Day (HH:MM - ex: 21:20)</label>
+                                <input class="form-control" id="first-train-input-edit" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency-input">Frequency (minutes)</label>
+                                <input class="form-control" id="frequency-input-edit" type="text">
+                            </div>
+                            <button class="btn btn-primary" id="update-data-btn" type="submit">Update Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
