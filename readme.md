@@ -17,6 +17,6 @@ Train-scheduling application, where users can add a train to current fleet and m
 
 
 ##### Getting Started
-* <a href="rdzwebdevsolutions.com/TrainScheduler/">RdzWebDevSolutions.com</a> 
+* <a href="http://rdzwebdevsolutions.com/TrainScheduler/">RdzWebDevSolutions.com</a> 
 
 
